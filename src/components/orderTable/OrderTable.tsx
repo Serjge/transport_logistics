@@ -3,7 +3,7 @@ import { Key, ReactElement } from 'react';
 import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SelectWarehouse } from 'components';
+import { SelectWarehouse } from 'components/index';
 import { isActiveRout, setRout } from 'store/actions';
 import { selectOrders, selectWarehouses } from 'store/selectors';
 import { getPointWarehouse } from 'utils';
@@ -30,6 +30,7 @@ const columns = [
 
 export const OrderTable = (): ReactElement => {
   const dispatch = useDispatch();
+
   const orders = useSelector(selectOrders);
   const warehouses = useSelector(selectWarehouses);
 

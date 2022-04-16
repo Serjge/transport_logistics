@@ -60,29 +60,33 @@ const initialState: InitialStateType = {
       id: '1',
       loadingWarehouseId: '3',
       unloadingWarehouseId: '2',
-      routs: [],
+      routes: [],
       isActive: false,
+      color: 'lime',
     },
     {
       id: '2',
       loadingWarehouseId: '4',
       unloadingWarehouseId: '1',
-      routs: [],
+      routes: [],
       isActive: false,
+      color: 'darkred',
     },
     {
       id: '3',
       loadingWarehouseId: '2',
       unloadingWarehouseId: '4',
-      routs: [],
+      routes: [],
       isActive: false,
+      color: 'darkblue',
     },
     {
       id: '4',
       loadingWarehouseId: '1',
       unloadingWarehouseId: '3',
-      routs: [],
+      routes: [],
       isActive: false,
+      color: 'blue',
     },
   ],
 };
@@ -117,7 +121,7 @@ export const appReducer = (
       return {
         ...state,
         orders: state.orders.map(order =>
-          order.id === orderId ? { ...order, routs: [...routs] } : order,
+          order.id === orderId ? { ...order, routes: [...routs] } : order,
         ),
       };
     }

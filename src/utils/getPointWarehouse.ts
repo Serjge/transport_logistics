@@ -1,8 +1,7 @@
 import { LatLngLiteral } from 'leaflet';
 
+import { ZERO_ELEMENT_ARRAY } from 'const';
 import { WarehouseType } from 'type';
-
-const ZERO_ELEMENT_ARRAY = 0;
 
 export const getPointWarehouse = (
   warehouses: WarehouseType[],

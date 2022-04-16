@@ -6,7 +6,7 @@ import { RouteResponseType } from 'api/type';
 import { SET_ROUT, setRouts, SetClickType } from 'store/actions';
 import { getRoutes } from 'utils';
 
-type RouteType = AxiosResponse<RouteResponseType, any>;
+type RouteType = AxiosResponse<RouteResponseType>;
 
 function* getRoutsSaga(action: SetClickType): Generator<StrictEffect, void, RouteType> {
   const { from, to, orderId } = action.payload;

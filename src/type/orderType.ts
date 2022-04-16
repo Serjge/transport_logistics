@@ -4,6 +4,7 @@ export type OrderType = {
   id: string;
   loadingWarehouseId: string;
   unloadingWarehouseId: string;
-  routs: LatLngLiteral[];
+  routes: LatLngLiteral[];
   isActive: boolean;
+  color: string;
 };
