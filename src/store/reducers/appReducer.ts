@@ -13,8 +13,10 @@ const initialState: InitialStateType = {
       city: 'Псков',
       state: 'ру',
       street: 'Ижерского Батальона 24Г',
-      lng: 28.29146,
-      lat: 57.83511,
+      point: {
+        lng: 28.29146,
+        lat: 57.83511,
+      },
     },
 
     {
@@ -22,24 +24,30 @@ const initialState: InitialStateType = {
       city: 'Псков',
       state: 'ру',
       street: 'Котово',
-      lng: 28.29146,
-      lat: 57.83511,
+      point: {
+        lng: 28.324141,
+        lat: 57.854074,
+      },
     },
     {
       id: '3',
       city: 'Псков',
       state: 'ру',
       street: 'Октябрьский пр. 60',
-      lng: 28.368302,
-      lat: 57.809,
+      point: {
+        lng: 28.368302,
+        lat: 57.809,
+      },
     },
     {
       id: '4',
       city: 'Псков',
       state: 'ру',
       street: 'Генерала Маргелова, 41',
-      lng: 28.29146,
-      lat: 57.83511,
+      point: {
+        lng: 28.287,
+        lat: 57.789439,
+      },
     },
   ],
   orders: [
