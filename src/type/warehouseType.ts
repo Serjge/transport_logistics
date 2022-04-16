@@ -3,4 +3,6 @@ export type WarehouseType = {
   state: string;
   city: string;
   street: string;
+  lng: number;
+  lat: number;
 };
