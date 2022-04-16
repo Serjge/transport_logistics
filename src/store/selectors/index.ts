@@ -1,1 +1,1 @@
-export { selectState, selectWarehouses } from './selectState';
+export { selectState, selectWarehouses, selectOrders } from './selectState';

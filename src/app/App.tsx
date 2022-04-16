@@ -2,8 +2,7 @@ import { FC } from 'react';
 
 import { AppWrapper } from './style';
 
-import { MapLeaflet } from 'components/mapLeaflet/MapLeaflet';
-import { OrderTable } from 'components/OrderTable';
+import { MapLeaflet, OrderTable } from 'components';
 
 export const App: FC = () => (
   <AppWrapper>

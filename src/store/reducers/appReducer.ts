@@ -1,10 +1,9 @@
-import { AppActionsType, IS_LOADING } from 'store/actions';
-import { WarehouseType } from 'type';
+import { AppActionsType, CHANGE_WAREHOUSE } from 'store/actions';
+import { OrderType, WarehouseType } from 'type';
 
 export type InitialStateType = {
-  isLoading: boolean;
   warehouses: WarehouseType[];
-  orders: string[];
+  orders: OrderType[];
 };
 
 const initialState: InitialStateType = {
@@ -34,8 +33,28 @@ const initialState: InitialStateType = {
       street: 'Рокосовскаго 16',
     },
   ],
-  orders: [],
-  isLoading: false,
+  orders: [
+    {
+      id: '1',
+      loadingWarehouseId: '3',
+      unloadingWarehouseId: '2',
+    },
+    {
+      id: '2',
+      loadingWarehouseId: '4',
+      unloadingWarehouseId: '1',
+    },
+    {
+      id: '3',
+      loadingWarehouseId: '2',
+      unloadingWarehouseId: '4',
+    },
+    {
+      id: '4',
+      loadingWarehouseId: '1',
+      unloadingWarehouseId: '3',
+    },
+  ],
 };
 
 export const appReducer = (
@@ -43,8 +62,26 @@ export const appReducer = (
   action: AppActionsType,
 ): InitialStateType => {
   switch (action.type) {
-    case IS_LOADING:
-      return { ...state, isLoading: action.payload.isLoading };
+    case CHANGE_WAREHOUSE: {
+      const { warehouseId, orderId, pointType } = action.payload;
+
+      if (pointType === 'loading') {
+        return {
+          ...state,
+          orders: state.orders.map(order =>
+            order.id === orderId ? { ...order, loadingWarehouseId: warehouseId } : order,
+          ),
+        };
+      }
+
+      return {
+        ...state,
+        orders: state.orders.map(order =>
+          order.id === orderId ? { ...order, unloadingWarehouseId: warehouseId } : order,
+        ),
+      };
+    }
+
     default:
       return state;
   }

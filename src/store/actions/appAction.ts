@@ -1,9 +1,17 @@
-export const IS_LOADING = 'APP/IS_LOADING';
+import { PointType } from 'type';
 
-export const isLoadingAC = (isLoading: boolean) =>
+export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
+
+export const changeWarehouse = (
+  orderId: string,
+  warehouseId: string,
+  pointType: PointType,
+) =>
   ({
-    type: IS_LOADING,
+    type: CHANGE_WAREHOUSE,
     payload: {
-      isLoading,
+      orderId,
+      warehouseId,
+      pointType,
     },
   } as const);

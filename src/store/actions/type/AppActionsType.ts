@@ -1,5 +1,5 @@
-import { isLoadingAC } from 'store/actions';
+import { changeWarehouse } from 'store/actions';
 
-export type AppActionsType = IsLoadingType;
+export type AppActionsType = changeWarehouseType;
 
-export type IsLoadingType = ReturnType<typeof isLoadingAC>;
+export type changeWarehouseType = ReturnType<typeof changeWarehouse>;

@@ -1,24 +1,37 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 
 import { Select } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { changeWarehouse } from 'store/actions';
 import { selectWarehouses } from 'store/selectors';
+import { PointType } from 'type';
 
 const { Option } = Select;
 
-const FIRST_ELEMENT_ARRAY = 0;
+type SelectWarehousePropsType = {
+  warehouseId: string;
+  orderId: string;
+  pointType: PointType;
+};
 
-export const SelectWarehouse = ({ selectId }: { selectId: string }): ReactElement => {
-  const [qwerty, setQwerty] = useState<string>(selectId);
+export const SelectWarehouse = ({
+  warehouseId = '1',
+  pointType,
+  orderId = '1',
+}: SelectWarehousePropsType): ReactElement => {
+  const dispatch = useDispatch();
 
   const warehouses = useSelector(selectWarehouses);
 
+  const handleChangeWarehouse = (e: string): void => {
+    dispatch(changeWarehouse(orderId, e, pointType));
+  };
+
   return (
     <Select
-      value={qwerty}
-      onChange={e => setQwerty(e)}
-      defaultValue={warehouses[FIRST_ELEMENT_ARRAY].id}
+      value={warehouseId}
+      onChange={handleChangeWarehouse}
       style={{ width: 240 }}
       bordered={false}
     >

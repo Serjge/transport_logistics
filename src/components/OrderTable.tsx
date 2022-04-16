@@ -1,52 +1,17 @@
 import { Key, ReactElement } from 'react';
 
 import { Table } from 'antd';
+import { useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components';
+import { selectOrders } from 'store/selectors';
 
-interface DataType {
+type DataType = {
   key: Key;
+  id: string;
   loading: ReactElement;
-  id: string;
   unloading: ReactElement;
-}
-
-interface QweType {
-  id: string;
-  loadingWarehouseId: string;
-  unloadingWarehouseId: string;
-}
-
-const qwe: QweType[] = [
-  {
-    id: '1',
-    loadingWarehouseId: '3',
-    unloadingWarehouseId: '2',
-  },
-  {
-    id: '2',
-    loadingWarehouseId: '4',
-    unloadingWarehouseId: '1',
-  },
-  {
-    id: '3',
-    loadingWarehouseId: '2',
-    unloadingWarehouseId: '4',
-  },
-  {
-    id: '4',
-    loadingWarehouseId: '1',
-    unloadingWarehouseId: '3',
-  },
-];
-const dataSource: DataType[] = qwe.map(
-  ({ id, loadingWarehouseId, unloadingWarehouseId }) => ({
-    key: id,
-    loading: <SelectWarehouse selectId={loadingWarehouseId} />,
-    unloading: <SelectWarehouse selectId={unloadingWarehouseId} />,
-    id,
-  }),
-);
+};
 
 const columns = [
   {
@@ -62,6 +27,29 @@ const columns = [
 ];
 
 export const OrderTable = (): ReactElement => {
+  const orders = useSelector(selectOrders);
+
+  const dataSource: DataType[] = orders.map(
+    ({ id, loadingWarehouseId, unloadingWarehouseId }) => ({
+      key: id,
+      loading: (
+        <SelectWarehouse
+          warehouseId={loadingWarehouseId}
+          orderId={id}
+          pointType="loading"
+        />
+      ),
+      unloading: (
+        <SelectWarehouse
+          warehouseId={unloadingWarehouseId}
+          orderId={id}
+          pointType="unloading"
+        />
+      ),
+      id,
+    }),
+  );
+
   const rowSelection = {
     onChange: (selectedRowKeys: Key[], selectedRows: DataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
