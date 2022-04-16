@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-import { Key, ReactElement, useState } from 'react';
+import { Key, ReactElement } from 'react';
 
-import { Table, Select } from 'antd';
+import { Table } from 'antd';
 
-const { Option } = Select;
+import { SelectWarehouse } from 'components';
 
 interface DataType {
   key: Key;
@@ -12,89 +11,42 @@ interface DataType {
   unloading: ReactElement;
 }
 
-const warehouses: WarehouseType[] = [
-  {
-    id: '1',
-    city: 'Псков',
-    state: 'ру',
-    street: 'Труда 20',
-  },
-  {
-    id: '2',
-    city: 'Псков',
-    state: 'ру',
-    street: 'Инженерная 12',
-  },
-  {
-    id: '3',
-    city: 'Псков',
-    state: 'ру',
-    street: 'Шосейная 3',
-  },
-  {
-    id: '4',
-    city: 'Псков',
-    state: 'ру',
-    street: 'Рокосовскаго 16',
-  },
-];
-
-export const Order = ({ selectId }: { selectId: string }): ReactElement => {
-  const [qwerty, setQwerty] = useState<string>(selectId);
-  console.log(qwerty);
-  return (
-    <div>
-      <Select
-        value={qwerty}
-        onChange={e => setQwerty(e)}
-        defaultValue={warehouses[0].id}
-        style={{ width: 240 }}
-        bordered={false}
-      >
-        {warehouses.map(({ id, state, street, city }) => (
-          <Option key={id} value={id}>
-            {` ${street}, ${city}, ${state}`}
-          </Option>
-        ))}
-      </Select>
-    </div>
-  );
-};
-
 interface QweType {
-  loading: string;
   id: string;
-  unloading: string;
+  loadingWarehouseId: string;
+  unloadingWarehouseId: string;
 }
 
 const qwe: QweType[] = [
   {
     id: '1',
-    loading: '3',
-    unloading: '2',
+    loadingWarehouseId: '3',
+    unloadingWarehouseId: '2',
   },
   {
     id: '2',
-    loading: '4',
-    unloading: '1',
+    loadingWarehouseId: '4',
+    unloadingWarehouseId: '1',
   },
   {
     id: '3',
-    loading: '2',
-    unloading: '4',
+    loadingWarehouseId: '2',
+    unloadingWarehouseId: '4',
   },
   {
     id: '4',
-    loading: '1',
-    unloading: '3',
+    loadingWarehouseId: '1',
+    unloadingWarehouseId: '3',
   },
 ];
-const dataSource: DataType[] = qwe.map(({ id, loading, unloading }) => ({
-  key: id,
-  loading: <Order selectId={loading} />,
-  unloading: <Order selectId={unloading} />,
-  id,
-}));
+const dataSource: DataType[] = qwe.map(
+  ({ id, loadingWarehouseId, unloadingWarehouseId }) => ({
+    key: id,
+    loading: <SelectWarehouse selectId={loadingWarehouseId} />,
+    unloading: <SelectWarehouse selectId={unloadingWarehouseId} />,
+    id,
+  }),
+);
 
 const columns = [
   {
@@ -108,13 +60,6 @@ const columns = [
     key: 'unloading',
   },
 ];
-
-type WarehouseType = {
-  id: string;
-  state: string;
-  city: string;
-  street: string;
-};
 
 export const OrderTable = (): ReactElement => {
   const rowSelection = {
