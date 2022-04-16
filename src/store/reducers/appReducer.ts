@@ -1,4 +1,4 @@
-import { AppActionsType, CHANGE_WAREHOUSE } from 'store/actions';
+import { AppActionsType, CHANGE_WAREHOUSE, SET_ROUTS } from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
 
 export type InitialStateType = {
@@ -55,21 +55,25 @@ const initialState: InitialStateType = {
       id: '1',
       loadingWarehouseId: '3',
       unloadingWarehouseId: '2',
+      routs: [],
     },
     {
       id: '2',
       loadingWarehouseId: '4',
       unloadingWarehouseId: '1',
+      routs: [],
     },
     {
       id: '3',
       loadingWarehouseId: '2',
       unloadingWarehouseId: '4',
+      routs: [],
     },
     {
       id: '4',
       loadingWarehouseId: '1',
       unloadingWarehouseId: '3',
+      routs: [],
     },
   ],
 };
@@ -95,6 +99,15 @@ export const appReducer = (
         ...state,
         orders: state.orders.map(order =>
           order.id === orderId ? { ...order, unloadingWarehouseId: warehouseId } : order,
+        ),
+      };
+    }
+
+    case SET_ROUTS: {
+      return {
+        ...state,
+        orders: state.orders.map(order =>
+          order.id === '1' ? { ...order, routs: [...action.payload.routs] } : order,
         ),
       };
     }

@@ -12,6 +12,7 @@ export const API = {
         key: process.env.REACT_APP_API_KEY,
         from: `${from.lat},${from.lng}`,
         to: `${to.lat},${to.lng}`,
+        unit: 'k', //  Kilometers
       },
     });
   },

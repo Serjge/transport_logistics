@@ -1,5 +1,6 @@
-import { changeWarehouse } from 'store/actions';
+import { changeWarehouse, setRouts } from 'store/actions';
 
-export type AppActionsType = changeWarehouseType;
+export type AppActionsType = ChangeWarehouseType | SetRoutsType;
 
-export type changeWarehouseType = ReturnType<typeof changeWarehouse>;
+export type ChangeWarehouseType = ReturnType<typeof changeWarehouse>;
+export type SetRoutsType = ReturnType<typeof setRouts>;
