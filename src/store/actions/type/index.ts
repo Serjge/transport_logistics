@@ -1,3 +1,9 @@
 export type { AllAppActionsType } from './AllAppActionsType';
 
-export type { AppActionsType } from './AppActionsType';
+export type {
+  AppActionsType,
+  SetClickType,
+  SetRoutsType,
+  ChangeWarehouseType,
+  IsActiveRoutType,
+} from './AppActionsType';

@@ -1,10 +1,12 @@
 import { Key, ReactElement } from 'react';
 
 import { Table } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components';
-import { selectOrders } from 'store/selectors';
+import { isActiveRout, setRout } from 'store/actions';
+import { selectOrders, selectWarehouses } from 'store/selectors';
+import { getPointWarehouse } from 'utils';
 
 type DataType = {
   key: Key;
@@ -27,7 +29,9 @@ const columns = [
 ];
 
 export const OrderTable = (): ReactElement => {
+  const dispatch = useDispatch();
   const orders = useSelector(selectOrders);
+  const warehouses = useSelector(selectWarehouses);
 
   const dataSource: DataType[] = orders.map(
     ({ id, loadingWarehouseId, unloadingWarehouseId }) => ({
@@ -51,10 +55,22 @@ export const OrderTable = (): ReactElement => {
   );
 
   const rowSelection = {
-    onChange: (selectedRowKeys: Key[], selectedRows: DataType[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    onChange: (selectedRowKeys: Key[]) => {
+      orders.forEach(({ id, isActive, unloadingWarehouseId, loadingWarehouseId }) => {
+        if (selectedRowKeys.includes(id) && !isActive) {
+          const loadingWarehouse = getPointWarehouse(warehouses, loadingWarehouseId);
+          const unloadingWarehouse = getPointWarehouse(warehouses, unloadingWarehouseId);
+
+          dispatch(isActiveRout(id, true));
+          dispatch(setRout(id, loadingWarehouse, unloadingWarehouse));
+        }
+        if (!selectedRowKeys.includes(id) && isActive) {
+          dispatch(isActiveRout(id, false));
+        }
+      });
     },
   };
+
   return (
     <div style={{ width: '40vw', marginTop: '50px' }}>
       <Table

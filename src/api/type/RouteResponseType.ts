@@ -102,7 +102,7 @@ type OptionType = {
   walkingSpeed: number;
 };
 
-type LegType = {
+export type LegType = {
   destIndex: number;
   destNarrative: string;
   distance: number;

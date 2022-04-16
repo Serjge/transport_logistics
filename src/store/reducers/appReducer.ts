@@ -1,4 +1,9 @@
-import { AppActionsType, CHANGE_WAREHOUSE, SET_ROUTS } from 'store/actions';
+import {
+  AppActionsType,
+  CHANGE_WAREHOUSE,
+  IS_ACTIVE_ROUT,
+  SET_ROUTS,
+} from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
 
 export type InitialStateType = {
@@ -56,24 +61,28 @@ const initialState: InitialStateType = {
       loadingWarehouseId: '3',
       unloadingWarehouseId: '2',
       routs: [],
+      isActive: false,
     },
     {
       id: '2',
       loadingWarehouseId: '4',
       unloadingWarehouseId: '1',
       routs: [],
+      isActive: false,
     },
     {
       id: '3',
       loadingWarehouseId: '2',
       unloadingWarehouseId: '4',
       routs: [],
+      isActive: false,
     },
     {
       id: '4',
       loadingWarehouseId: '1',
       unloadingWarehouseId: '3',
       routs: [],
+      isActive: false,
     },
   ],
 };
@@ -104,14 +113,25 @@ export const appReducer = (
     }
 
     case SET_ROUTS: {
+      const { routs, orderId } = action.payload;
       return {
         ...state,
         orders: state.orders.map(order =>
-          order.id === '1' ? { ...order, routs: [...action.payload.routs] } : order,
+          order.id === orderId ? { ...order, routs: [...routs] } : order,
         ),
       };
     }
 
+    case IS_ACTIVE_ROUT: {
+      const { isActive, orderId } = action.payload;
+
+      return {
+        ...state,
+        orders: state.orders.map(order =>
+          order.id === orderId ? { ...order, isActive } : order,
+        ),
+      };
+    }
     default:
       return state;
   }

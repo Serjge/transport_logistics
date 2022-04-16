@@ -1,1 +1,1 @@
-export type { RouteResponseType } from './RouteResponseType';
+export type { RouteResponseType, LegType } from './RouteResponseType';

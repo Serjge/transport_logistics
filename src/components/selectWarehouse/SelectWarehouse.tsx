@@ -16,9 +16,9 @@ type SelectWarehousePropsType = {
 };
 
 export const SelectWarehouse = ({
-  warehouseId = '1',
+  warehouseId,
   pointType,
-  orderId = '1',
+  orderId,
 }: SelectWarehousePropsType): ReactElement => {
   const dispatch = useDispatch();
 

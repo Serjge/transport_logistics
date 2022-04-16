@@ -5,4 +5,5 @@ export type OrderType = {
   loadingWarehouseId: string;
   unloadingWarehouseId: string;
   routs: LatLngLiteral[];
+  isActive: boolean;
 };
