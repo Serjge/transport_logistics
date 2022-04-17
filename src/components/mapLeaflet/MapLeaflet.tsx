@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 
 import { MapWrapper } from './style';
 
+import './Map.css';
 import { MotionTrack } from 'components';
 import { selectOrders } from 'store/selectors';
-import './Map.css';
 
 const CENTER: LatLngLiteral = { lng: 28.335607, lat: 57.837852 };
 

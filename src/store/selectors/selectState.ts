@@ -42,3 +42,6 @@ export const selectUnloadingWarehouse = (
 
 export const selectColor = (state: RootReducerType, orderId: string): string =>
   state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT_ARRAY].color;
+
+export const selectIsActive = (state: RootReducerType, orderId: string): boolean =>
+  state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT_ARRAY].isActive;

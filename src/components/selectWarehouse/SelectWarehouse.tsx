@@ -3,8 +3,9 @@ import { ReactElement } from 'react';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { RootReducerType } from 'store';
 import { changeWarehouse } from 'store/actions';
-import { selectWarehouses } from 'store/selectors';
+import { selectIsActive, selectWarehouses } from 'store/selectors';
 import { PointType } from 'type';
 
 const { Option } = Select;
@@ -23,6 +24,9 @@ export const SelectWarehouse = ({
   const dispatch = useDispatch();
 
   const warehouses = useSelector(selectWarehouses);
+  const isActive = useSelector((state: RootReducerType) =>
+    selectIsActive(state, orderId),
+  );
 
   const handleChangeWarehouse = (e: string): void => {
     dispatch(changeWarehouse(orderId, e, pointType));
@@ -34,6 +38,7 @@ export const SelectWarehouse = ({
       onChange={handleChangeWarehouse}
       style={{ width: 240 }}
       bordered={false}
+      disabled={isActive}
     >
       {warehouses.map(({ id, state, street, city }) => (
         <Option key={id} value={id}>

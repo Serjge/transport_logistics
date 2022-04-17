@@ -1,6 +1,7 @@
 import { Key, ReactElement } from 'react';
 
 import { Table } from 'antd';
+import { Resizable } from 're-resizable';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components/index';
@@ -73,13 +74,21 @@ export const OrderTable = (): ReactElement => {
   };
 
   return (
-    <div style={{ width: '40vw', marginTop: '50px' }}>
+    <Resizable
+      defaultSize={{
+        width: '50%',
+        height: '100%',
+      }}
+      maxWidth="100%"
+      minWidth="50px"
+    >
       <Table
+        scroll={{ x: 400 }}
         dataSource={dataSource}
         pagination={false}
         columns={columns}
         rowSelection={rowSelection}
       />
-    </div>
+    </Resizable>
   );
 };

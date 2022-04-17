@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { call, put, spawn, StrictEffect, takeLeading } from 'redux-saga/effects';
+import { call, put, spawn, StrictEffect, takeEvery } from 'redux-saga/effects';
 
 import { API } from 'api';
 import { RouteResponseType } from 'api/type';
@@ -25,7 +25,7 @@ function* getRoutsSaga(action: SetClickType): Generator<StrictEffect, void, Rout
 }
 
 function* watchSaga(): Generator {
-  yield takeLeading(SET_ROUT, getRoutsSaga);
+  yield takeEvery(SET_ROUT, getRoutsSaga);
 }
 
 export function* rootSaga(): Generator {
