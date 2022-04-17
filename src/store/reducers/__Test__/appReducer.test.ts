@@ -1,5 +1,5 @@
 import { Element } from 'enum';
-import { changeWarehouse, isActiveRout, setRoutes } from 'store/actions';
+import { changeWarehouse, isActiveRout, setError, setRoutes } from 'store/actions';
 import { appReducer, InitialAppStateType } from 'store/reducers/appReducer';
 
 let initialState: InitialAppStateType;
@@ -8,6 +8,7 @@ const LENGTH_ARRAY_SIX = 6;
 const secondOrder = '2';
 const thirdOrder = '3';
 const warehouseId = '3';
+const error = 'ERROR';
 
 const routes = [
   { lng: 28.368454, lat: 57.808624 },
@@ -150,5 +151,26 @@ describe('app reducer action isActiveRout', () => {
     expect(initialState.orders[Element.Second].isActive).toBe(true);
     expect(endState.orders[Element.Second].isActive).toBe(false);
     expect(endState.orders[Element.Zero].isActive).toBe(false);
+  });
+});
+
+describe('app reducer action setError', () => {
+  test('set error message', () => {
+    const action = setError(error);
+
+    const endState = appReducer(initialState, action);
+
+    expect(endState.error).toBe(error);
+    expect(initialState.error).toBe(null);
+  });
+
+  test('remove error message', () => {
+    initialState.error = error;
+    const action = setError(null);
+
+    const endState = appReducer(initialState, action);
+
+    expect(endState.error).toBe(null);
+    expect(initialState.error).toBe(error);
   });
 });

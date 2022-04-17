@@ -40,7 +40,7 @@ export const isActiveRout = (orderId: string, isActive: boolean) =>
     },
   } as const);
 
-export const setError = (error: string) =>
+export const setError = (error: string | null) =>
   ({
     type: SET_ERROR,
     payload: {
