@@ -1,11 +1,11 @@
 export {
   CHANGE_WAREHOUSE,
   changeWarehouse,
-  setRouts,
-  SET_ROUTS,
+  setRoutes,
+  SET_ROUTES,
   isActiveRout,
-  SET_ROUT,
-  setRout,
+  FETCH_ROUT,
+  fetchRout,
   IS_ACTIVE_ROUT,
 } from './appAction';
 

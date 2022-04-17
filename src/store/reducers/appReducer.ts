@@ -2,16 +2,16 @@ import {
   AppActionsType,
   CHANGE_WAREHOUSE,
   IS_ACTIVE_ROUT,
-  SET_ROUTS,
+  SET_ROUTES,
 } from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
 
-export type InitialStateType = {
+export type InitialAppStateType = {
   warehouses: WarehouseType[];
   orders: OrderType[];
 };
 
-const initialState: InitialStateType = {
+const initialState: InitialAppStateType = {
   warehouses: [
     {
       id: '1',
@@ -93,7 +93,7 @@ const initialState: InitialStateType = {
 export const appReducer = (
   state = initialState,
   action: AppActionsType,
-): InitialStateType => {
+): InitialAppStateType => {
   switch (action.type) {
     case CHANGE_WAREHOUSE: {
       const { warehouseId, orderId, pointType } = action.payload;
@@ -115,7 +115,7 @@ export const appReducer = (
       };
     }
 
-    case SET_ROUTS: {
+    case SET_ROUTES: {
       const { routs, orderId } = action.payload;
       return {
         ...state,

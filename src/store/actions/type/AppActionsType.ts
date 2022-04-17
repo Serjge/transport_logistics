@@ -1,4 +1,4 @@
-import { changeWarehouse, isActiveRout, setRouts, setRout } from 'store/actions';
+import { changeWarehouse, isActiveRout, setRoutes, fetchRout } from 'store/actions';
 
 export type AppActionsType =
   | ChangeWarehouseType
@@ -7,6 +7,6 @@ export type AppActionsType =
   | IsActiveRoutType;
 
 export type ChangeWarehouseType = ReturnType<typeof changeWarehouse>;
-export type SetRoutsType = ReturnType<typeof setRouts>;
-export type SetClickType = ReturnType<typeof setRout>;
+export type SetRoutsType = ReturnType<typeof setRoutes>;
+export type SetClickType = ReturnType<typeof fetchRout>;
 export type IsActiveRoutType = ReturnType<typeof isActiveRout>;

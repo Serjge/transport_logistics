@@ -17,7 +17,7 @@ type MotionTrackPropsType = {
   orderId: string;
 };
 
-L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.5.0/dist/images/';
+L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.7.0/dist/images/';
 
 export const MotionTrack = ({ orderId }: MotionTrackPropsType): ReactElement => {
   const color = useSelector((state: RootReducerType) => selectColor(state, orderId));

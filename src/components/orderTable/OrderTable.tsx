@@ -5,7 +5,7 @@ import { Resizable } from 're-resizable';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components/index';
-import { isActiveRout, setRout } from 'store/actions';
+import { isActiveRout, fetchRout } from 'store/actions';
 import { selectOrders, selectWarehouses } from 'store/selectors';
 import { getPointWarehouse } from 'utils';
 
@@ -64,7 +64,7 @@ export const OrderTable = (): ReactElement => {
           const unloadingWarehouse = getPointWarehouse(warehouses, unloadingWarehouseId);
 
           dispatch(isActiveRout(id, true));
-          dispatch(setRout(id, loadingWarehouse, unloadingWarehouse));
+          dispatch(fetchRout(id, loadingWarehouse, unloadingWarehouse));
         }
         if (!selectedRowKeys.includes(id) && isActive) {
           dispatch(isActiveRout(id, false));
