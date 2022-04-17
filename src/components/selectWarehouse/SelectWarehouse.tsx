@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 
 import { Select } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import { useActions } from 'hook/useActions';
 import { RootReducerType } from 'store';
-import { changeWarehouse } from 'store/actions';
 import { selectIsActive, selectWarehouses } from 'store/selectors';
 import { PointType } from 'type';
 
@@ -21,7 +21,7 @@ export const SelectWarehouse = ({
   pointType,
   orderId,
 }: SelectWarehousePropsType): ReactElement => {
-  const dispatch = useDispatch();
+  const { changeWarehouse } = useActions();
 
   const warehouses = useSelector(selectWarehouses);
   const isActive = useSelector((state: RootReducerType) =>
@@ -29,7 +29,7 @@ export const SelectWarehouse = ({
   );
 
   const handleChangeWarehouse = (e: string): void => {
-    dispatch(changeWarehouse(orderId, e, pointType));
+    changeWarehouse(orderId, e, pointType);
   };
 
   const warehouse = warehouses.map(({ id, state, street, city }) => (

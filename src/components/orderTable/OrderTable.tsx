@@ -2,10 +2,10 @@ import { Key, ReactElement } from 'react';
 
 import { Table } from 'antd';
 import { Resizable } from 're-resizable';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components';
-import { isActiveRout, fetchRout } from 'store/actions';
+import { useActions } from 'hook/useActions';
 import { selectOrders, selectWarehouses } from 'store/selectors';
 import { getPointWarehouse } from 'utils';
 
@@ -30,7 +30,7 @@ const columns = [
 ];
 
 export const OrderTable = (): ReactElement => {
-  const dispatch = useDispatch();
+  const { isActiveRout, fetchRout } = useActions();
 
   const orders = useSelector(selectOrders);
   const warehouses = useSelector(selectWarehouses);
@@ -63,11 +63,11 @@ export const OrderTable = (): ReactElement => {
           const loadingWarehouse = getPointWarehouse(warehouses, loadingWarehouseId);
           const unloadingWarehouse = getPointWarehouse(warehouses, unloadingWarehouseId);
 
-          dispatch(isActiveRout(id, true));
-          dispatch(fetchRout(id, loadingWarehouse, unloadingWarehouse));
+          isActiveRout(id, true);
+          fetchRout(id, loadingWarehouse, unloadingWarehouse);
         }
         if (!selectedRowKeys.includes(id) && isActive) {
-          dispatch(isActiveRout(id, false));
+          isActiveRout(id, false);
         }
       });
     },
