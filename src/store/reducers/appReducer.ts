@@ -29,10 +29,10 @@ const initialState: InitialAppStateType = {
       id: '2',
       city: 'Псков',
       state: 'ру',
-      street: 'Котово',
+      street: 'Белинского 74А',
       point: {
-        lng: 28.324141,
-        lat: 57.854074,
+        lng: 28.344,
+        lat: 57.8315,
       },
     },
     {
