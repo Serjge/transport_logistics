@@ -9,39 +9,42 @@ export const selectState = (state: RootReducerType): RootReducerType => state;
 export const selectWarehouses = (state: RootReducerType): WarehouseType[] =>
   state.app.warehouses;
 
+export const selectWarehouse = (
+  state: RootReducerType,
+  warehouseId: string,
+): WarehouseType =>
+  state.app.warehouses.filter(({ id }) => id === warehouseId)[ZERO_ELEMENT];
+
 export const selectOrders = (state: RootReducerType): OrderType[] => state.app.orders;
 
+export const selectOrder = (state: RootReducerType, orderId: string): OrderType =>
+  state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT];
+
 export const selectRoutes = (state: RootReducerType, orderId: string): LatLngLiteral[] =>
-  state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT].routes;
+  selectOrder(state, orderId).routes;
 
 export const selectLoadingWarehouse = (
   state: RootReducerType,
   orderId: string,
 ): WarehouseType => {
-  const { loadingWarehouseId } = state.app.orders.filter(({ id }) => id === orderId)[
-    ZERO_ELEMENT
-  ];
+  const { loadingWarehouseId } = selectOrder(state, orderId);
 
-  return state.app.warehouses.filter(({ id }) => id === loadingWarehouseId)[ZERO_ELEMENT];
+  return selectWarehouse(state, loadingWarehouseId);
 };
 
 export const selectUnloadingWarehouse = (
   state: RootReducerType,
   orderId: string,
 ): WarehouseType => {
-  const { unloadingWarehouseId } = state.app.orders.filter(({ id }) => id === orderId)[
-    ZERO_ELEMENT
-  ];
+  const { unloadingWarehouseId } = selectOrder(state, orderId);
 
-  return state.app.warehouses.filter(({ id }) => id === unloadingWarehouseId)[
-    ZERO_ELEMENT
-  ];
+  return selectWarehouse(state, unloadingWarehouseId);
 };
 
 export const selectColor = (state: RootReducerType, orderId: string): string =>
-  state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT].color;
+  selectOrder(state, orderId).color;
 
 export const selectIsActive = (state: RootReducerType, orderId: string): boolean =>
-  state.app.orders.filter(({ id }) => id === orderId)[ZERO_ELEMENT].isActive;
+  selectOrder(state, orderId).isActive;
 
 export const selectError = (state: RootReducerType): string | null => state.app.error;
