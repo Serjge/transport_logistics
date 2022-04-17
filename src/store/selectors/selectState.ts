@@ -46,3 +46,6 @@ export const selectIsActive = (state: RootReducerType, orderId: string): boolean
   selectOrder(state, orderId).isActive;
 
 export const selectError = (state: RootReducerType): string | null => state.app.error;
+
+export const selectCenterMap = (state: RootReducerType): LatLngLiteral =>
+  state.app.centerMap;

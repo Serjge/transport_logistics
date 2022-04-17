@@ -8,4 +8,7 @@ export {
   selectColor,
   selectIsActive,
   selectError,
+  selectCenterMap,
+  selectWarehouse,
+  selectOrder,
 } from './selectState';

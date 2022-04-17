@@ -1,3 +1,5 @@
+import { LatLngLiteral } from 'leaflet';
+
 import {
   AppActionsType,
   CHANGE_WAREHOUSE,
@@ -11,6 +13,7 @@ export type InitialAppStateType = {
   warehouses: WarehouseType[];
   orders: OrderType[];
   error: string | null;
+  centerMap: LatLngLiteral;
 };
 
 const initialState: InitialAppStateType = {
@@ -91,6 +94,7 @@ const initialState: InitialAppStateType = {
     },
   ],
   error: null,
+  centerMap: { lng: 28.332645, lat: 57.819312 },
 };
 
 export const appReducer = (
