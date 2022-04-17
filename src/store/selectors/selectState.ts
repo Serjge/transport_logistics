@@ -17,27 +17,27 @@ export const selectRoutes = (state: RootReducerType, orderId: string): LatLngLit
 export const selectLoadingWarehouse = (
   state: RootReducerType,
   orderId: string,
-): LatLngLiteral => {
+): WarehouseType => {
   const { loadingWarehouseId } = state.app.orders.filter(({ id }) => id === orderId)[
     ZERO_ELEMENT_ARRAY
   ];
 
   return state.app.warehouses.filter(({ id }) => id === loadingWarehouseId)[
     ZERO_ELEMENT_ARRAY
-  ].point;
+  ];
 };
 
 export const selectUnloadingWarehouse = (
   state: RootReducerType,
   orderId: string,
-): LatLngLiteral => {
+): WarehouseType => {
   const { unloadingWarehouseId } = state.app.orders.filter(({ id }) => id === orderId)[
     ZERO_ELEMENT_ARRAY
   ];
 
   return state.app.warehouses.filter(({ id }) => id === unloadingWarehouseId)[
     ZERO_ELEMENT_ARRAY
-  ].point;
+  ];
 };
 
 export const selectColor = (state: RootReducerType, orderId: string): string =>

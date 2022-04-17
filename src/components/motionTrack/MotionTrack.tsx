@@ -31,8 +31,8 @@ export const MotionTrack = ({ orderId }: MotionTrackPropsType): ReactElement => 
 
   return (
     <div>
-      <Mark lat={loadingWarehouse.lat} lng={loadingWarehouse.lng} />
-      <Mark lat={unloadingWarehouse.lat} lng={unloadingWarehouse.lng} />
+      <Mark position={loadingWarehouse} typePlace="Loading" />
+      <Mark position={unloadingWarehouse} typePlace="Unloading" />
       <Polyline pathOptions={{ color }} positions={routes} />
     </div>
   );

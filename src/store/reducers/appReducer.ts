@@ -23,7 +23,6 @@ const initialState: InitialStateType = {
         lat: 57.83511,
       },
     },
-
     {
       id: '2',
       city: 'Псков',

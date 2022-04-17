@@ -1,12 +1,21 @@
 import { ReactElement } from 'react';
 
-import { LatLngLiteral } from 'leaflet';
 import { Popup, Marker } from 'react-leaflet';
 
-export const Mark = ({ lng, lat }: LatLngLiteral): ReactElement => (
-  <Marker position={{ lng, lat }}>
-    <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
-  </Marker>
-);
+import { WarehouseType } from 'type';
+
+type MarkPropsType = {
+  position: WarehouseType;
+  typePlace: 'Loading' | 'Unloading';
+};
+
+export const Mark = ({ position, typePlace }: MarkPropsType): ReactElement => {
+  const { point, street, city, state } = position;
+  return (
+    <Marker position={point}>
+      <Popup>
+        {typePlace}. <br /> {` ${street}, ${city}, ${state}`}.
+      </Popup>
+    </Marker>
+  );
+};

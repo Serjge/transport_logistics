@@ -17,5 +17,5 @@ export const AppContainer = styled.div`
   width: 95vw;
   display: flex;
   justify-content: space-between;
-  height: 80vh;
+  height: 75vh;
 `;

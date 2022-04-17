@@ -85,9 +85,9 @@ export const OrderTable = (): ReactElement => {
       <Table
         scroll={{ x: 400 }}
         dataSource={dataSource}
-        pagination={false}
         columns={columns}
         rowSelection={rowSelection}
+        pagination={{ pageSize: 10 }}
       />
     </Resizable>
   );
