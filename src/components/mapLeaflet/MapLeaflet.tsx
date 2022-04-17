@@ -10,7 +10,7 @@ import './Map.css';
 import { MotionTrack } from 'components';
 import { selectOrders } from 'store/selectors';
 
-const CENTER: LatLngLiteral = { lng: 28.335607, lat: 57.837852 };
+const CENTER: LatLngLiteral = { lng: 28.332645, lat: 57.819312 };
 
 export const MapLeaflet = (): ReactElement => {
   const orders = useSelector(selectOrders);
