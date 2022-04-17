@@ -14,6 +14,7 @@ export type InitialAppStateType = {
   orders: OrderType[];
   error: string | null;
   centerMap: LatLngLiteral;
+  zoom: number;
 };
 
 const initialState: InitialAppStateType = {
@@ -95,6 +96,7 @@ const initialState: InitialAppStateType = {
   ],
   error: null,
   centerMap: { lng: 28.332645, lat: 57.819312 },
+  zoom: 12,
 };
 
 export const appReducer = (

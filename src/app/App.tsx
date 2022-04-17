@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactElement } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { AppContainer, AppWrapper } from './style';
 import { MapLeaflet, OrderTable } from 'components';
 import { selectError } from 'store/selectors';
 
-export const App: FC = () => {
+export const App = (): ReactElement => {
   const error = useSelector(selectError);
 
   return (

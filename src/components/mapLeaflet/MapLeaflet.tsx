@@ -7,9 +7,10 @@ import { MapWrapper } from './style';
 
 import './Map.css';
 import { MotionTrack } from 'components';
-import { selectCenterMap, selectOrders } from 'store/selectors';
+import { selectZoom, selectCenterMap, selectOrders } from 'store/selectors';
 
 export const MapLeaflet = (): ReactElement => {
+  const zoom = useSelector(selectZoom);
   const orders = useSelector(selectOrders);
   const centerMap = useSelector(selectCenterMap);
 
@@ -22,7 +23,7 @@ export const MapLeaflet = (): ReactElement => {
 
   return (
     <MapWrapper>
-      <MapContainer center={centerMap} zoom={12}>
+      <MapContainer center={centerMap} zoom={zoom}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

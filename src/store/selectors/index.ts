@@ -11,4 +11,5 @@ export {
   selectCenterMap,
   selectWarehouse,
   selectOrder,
+  selectZoom,
 } from './selectState';
