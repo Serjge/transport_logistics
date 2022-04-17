@@ -4,7 +4,7 @@ import { Table } from 'antd';
 import { Resizable } from 're-resizable';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SelectWarehouse } from 'components/index';
+import { SelectWarehouse } from 'components';
 import { isActiveRout, fetchRout } from 'store/actions';
 import { selectOrders, selectWarehouses } from 'store/selectors';
 import { getPointWarehouse } from 'utils';

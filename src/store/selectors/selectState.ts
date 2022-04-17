@@ -28,7 +28,6 @@ export const selectLoadingWarehouse = (
   orderId: string,
 ): WarehouseType => {
   const { loadingWarehouseId } = selectOrder(state, orderId);
-
   return selectWarehouse(state, loadingWarehouseId);
 };
 
@@ -37,7 +36,6 @@ export const selectUnloadingWarehouse = (
   orderId: string,
 ): WarehouseType => {
   const { unloadingWarehouseId } = selectOrder(state, orderId);
-
   return selectWarehouse(state, unloadingWarehouseId);
 };
 

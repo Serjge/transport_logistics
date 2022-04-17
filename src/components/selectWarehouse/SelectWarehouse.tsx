@@ -32,6 +32,12 @@ export const SelectWarehouse = ({
     dispatch(changeWarehouse(orderId, e, pointType));
   };
 
+  const warehouse = warehouses.map(({ id, state, street, city }) => (
+    <Option key={id} value={id}>
+      {` ${street}, ${city}, ${state}`}
+    </Option>
+  ));
+
   return (
     <Select
       value={warehouseId}
@@ -40,11 +46,7 @@ export const SelectWarehouse = ({
       bordered={false}
       disabled={isActive}
     >
-      {warehouses.map(({ id, state, street, city }) => (
-        <Option key={id} value={id}>
-          {` ${street}, ${city}, ${state}`}
-        </Option>
-      ))}
+      {warehouse}
     </Select>
   );
 };
