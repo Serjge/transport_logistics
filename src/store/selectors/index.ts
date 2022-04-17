@@ -7,4 +7,5 @@ export {
   selectUnloadingWarehouse,
   selectColor,
   selectIsActive,
+  selectError,
 } from './selectState';

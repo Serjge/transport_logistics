@@ -2,6 +2,7 @@ import {
   AppActionsType,
   CHANGE_WAREHOUSE,
   IS_ACTIVE_ROUT,
+  SET_ERROR,
   SET_ROUTES,
 } from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
@@ -9,6 +10,7 @@ import { OrderType, WarehouseType } from 'type';
 export type InitialAppStateType = {
   warehouses: WarehouseType[];
   orders: OrderType[];
+  error: string | null;
 };
 
 const initialState: InitialAppStateType = {
@@ -88,6 +90,7 @@ const initialState: InitialAppStateType = {
       color: 'blue',
     },
   ],
+  error: null,
 };
 
 export const appReducer = (
@@ -135,6 +138,13 @@ export const appReducer = (
         ),
       };
     }
+
+    case SET_ERROR: {
+      const { error } = action.payload;
+
+      return { ...state, error };
+    }
+
     default:
       return state;
   }

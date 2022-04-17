@@ -20,6 +20,7 @@ const routes = [
 
 beforeEach(() => {
   initialState = {
+    error: null,
     warehouses: [
       {
         id: '1',

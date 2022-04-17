@@ -1,1 +1,1 @@
-export { ZERO_ELEMENT_ARRAY } from './ZERO_ELEMENT_ARRAY';
+export { ZERO_ELEMENT } from 'const/ZERO_ELEMENT';

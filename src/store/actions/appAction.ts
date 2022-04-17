@@ -2,10 +2,11 @@ import { LatLngLiteral } from 'leaflet';
 
 import { PointType } from 'type';
 
-export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
+export const SET_ERROR = 'APP/SET_ERROR';
 export const SET_ROUTES = 'APP/SET_ROUTES';
 export const FETCH_ROUT = 'APP/FETCH_ROUT';
 export const IS_ACTIVE_ROUT = 'APP/IS_ACTIVE_ROUT';
+export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
 
 export const changeWarehouse = (
   orderId: string,
@@ -39,13 +40,21 @@ export const isActiveRout = (orderId: string, isActive: boolean) =>
     },
   } as const);
 
+export const setError = (error: string) =>
+  ({
+    type: SET_ERROR,
+    payload: {
+      error,
+    },
+  } as const);
+
 // saga
 export const fetchRout = (orderId: string, from: LatLngLiteral, to: LatLngLiteral) =>
   ({
     type: FETCH_ROUT,
     payload: {
+      orderId,
       from,
       to,
-      orderId,
     },
   } as const);

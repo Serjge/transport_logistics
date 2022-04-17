@@ -2,7 +2,7 @@ export type { AllAppActionsType } from './AllAppActionsType';
 
 export type {
   AppActionsType,
-  SetClickType,
+  FetchRoutType,
   SetRoutsType,
   ChangeWarehouseType,
   IsActiveRoutType,

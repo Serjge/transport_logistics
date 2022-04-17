@@ -7,12 +7,14 @@ export {
   FETCH_ROUT,
   fetchRout,
   IS_ACTIVE_ROUT,
+  setError,
+  SET_ERROR,
 } from './appAction';
 
 export type {
   AllAppActionsType,
   AppActionsType,
-  SetClickType,
+  FetchRoutType,
   IsActiveRoutType,
   SetRoutsType,
   ChangeWarehouseType,

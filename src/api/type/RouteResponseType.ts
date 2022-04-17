@@ -6,7 +6,7 @@ export type RouteResponseType = {
 };
 type InfoType = {
   copyright: { imageAltText: string; imageUrl: string; text: string };
-  messages: [];
+  messages: string[];
   statuscode: number;
 };
 
