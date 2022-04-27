@@ -6,4 +6,5 @@ export type {
   SetRoutsType,
   ChangeWarehouseType,
   IsActiveRoutType,
+  SetErrorType,
 } from './AppActionsType';

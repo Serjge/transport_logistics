@@ -18,4 +18,5 @@ export type {
   IsActiveRoutType,
   SetRoutsType,
   ChangeWarehouseType,
+  SetErrorType,
 } from './type';
