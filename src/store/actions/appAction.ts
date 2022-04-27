@@ -49,12 +49,10 @@ export const setError = (error: string | null) =>
   } as const);
 
 // saga
-export const fetchRout = (orderId: string, from: LatLngLiteral, to: LatLngLiteral) =>
+export const fetchRout = (orderId: string) =>
   ({
     type: FETCH_ROUT,
     payload: {
       orderId,
-      from,
-      to,
     },
   } as const);
