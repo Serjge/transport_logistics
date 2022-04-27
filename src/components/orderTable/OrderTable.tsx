@@ -5,7 +5,8 @@ import { Resizable } from 're-resizable';
 import { useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components';
-import { useActions } from 'hook/useActions';
+import { PointType } from 'enum';
+import { useActions } from 'hook';
 import { selectOrders, selectWarehouses } from 'store/selectors';
 import { getPointWarehouse } from 'utils';
 
@@ -19,18 +20,18 @@ type DataType = {
 const columns = [
   {
     title: 'Loading place',
-    dataIndex: 'loading',
-    key: 'loading',
+    dataIndex: PointType.loading,
+    key: PointType.loading,
   },
   {
     title: 'Unloading place',
-    dataIndex: 'unloading',
-    key: 'unloading',
+    dataIndex: PointType.unloading,
+    key: PointType.unloading,
   },
 ];
 
 export const OrderTable = (): ReactElement => {
-  const { isActiveRout, fetchRout } = useActions();
+  const { isActiveRout, fetchRout, setRoutes } = useActions();
 
   const orders = useSelector(selectOrders);
   const warehouses = useSelector(selectWarehouses);
@@ -42,14 +43,14 @@ export const OrderTable = (): ReactElement => {
         <SelectWarehouse
           warehouseId={loadingWarehouseId}
           orderId={id}
-          pointType="loading"
+          pointType={PointType.loading}
         />
       ),
       unloading: (
         <SelectWarehouse
           warehouseId={unloadingWarehouseId}
           orderId={id}
-          pointType="unloading"
+          pointType={PointType.unloading}
         />
       ),
       id,
@@ -68,6 +69,7 @@ export const OrderTable = (): ReactElement => {
         }
         if (!selectedRowKeys.includes(id) && isActive) {
           isActiveRout(id, false);
+          setRoutes(id, []);
         }
       });
     },

@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { ActionCreatorsMapObject, bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 
 import {
-  AllAppActionsType,
   changeWarehouse,
   fetchRout,
   isActiveRout,
@@ -18,7 +17,7 @@ const allActions = {
   fetchRout,
 };
 
-export const useActions = (): ActionCreatorsMapObject<AllAppActionsType> => {
+export const useActions = (): typeof allActions => {
   const dispatch = useDispatch();
 
   return bindActionCreators(allActions, dispatch);

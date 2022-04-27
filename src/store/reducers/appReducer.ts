@@ -126,6 +126,7 @@ export const appReducer = (
 
     case SET_ROUTES: {
       const { routs, orderId } = action.payload;
+
       return {
         ...state,
         orders: state.orders.map(order =>
