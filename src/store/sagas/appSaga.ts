@@ -1,4 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
+import { LatLngLiteral } from 'leaflet';
 import {
   call,
   CallEffect,
@@ -23,27 +24,41 @@ import {
   SetRoutsType,
 } from 'store/actions';
 import { selectOrder, selectWarehouses } from 'store/selectors';
-import { RootReducerType } from 'store/store';
 import { OrderType, WarehouseType } from 'type';
 import { getPointWarehouse, getRoutes } from 'utils';
 
-type RouteType = AxiosResponse<RouteResponseType>;
-
 const EMPTY_ARRAY = 0;
 
-function* getRoutsSaga(
-  action: FetchRoutType,
-): Generator<
-  PutEffect<SetErrorType | SetRoutsType> | CallEffect<RouteType> | SelectEffect,
-  void,
-  RootReducerType & RouteType & OrderType & WarehouseType[]
-> {
-  const { orderId } = action.payload;
+type RouteType = AxiosResponse<RouteResponseType>;
+type OrderWarehousesType = {
+  loadingWarehouse: LatLngLiteral;
+  unloadingWarehouse: LatLngLiteral;
+};
 
+function* getOrderWarehousesSaga(
+  orderId: string,
+): Generator<SelectEffect, OrderWarehousesType, OrderType & WarehouseType[]> {
   const warehouses = yield select(selectWarehouses);
   const { unloadingWarehouseId, loadingWarehouseId } = yield select(selectOrder, orderId);
   const loadingWarehouse = getPointWarehouse(warehouses, loadingWarehouseId);
   const unloadingWarehouse = getPointWarehouse(warehouses, unloadingWarehouseId);
+
+  return { loadingWarehouse, unloadingWarehouse };
+}
+
+function* getRoutsSaga(
+  action: FetchRoutType,
+): Generator<
+  PutEffect<SetErrorType | SetRoutsType> | CallEffect<RouteType | OrderWarehousesType>,
+  void,
+  RouteType & OrderWarehousesType
+> {
+  const { orderId } = action.payload;
+
+  const { loadingWarehouse, unloadingWarehouse } = yield call(
+    getOrderWarehousesSaga,
+    orderId,
+  );
 
   try {
     const {
