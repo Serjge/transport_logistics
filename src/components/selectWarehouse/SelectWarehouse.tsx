@@ -21,7 +21,7 @@ export const SelectWarehouse = ({
   pointType,
   orderId,
 }: SelectWarehousePropsType): ReactElement => {
-  const { changeWarehouse } = useActions();
+  const { changeWarehouse, fetchRout } = useActions();
 
   const warehouses = useSelector(selectWarehouses);
   const isActive = useSelector((state: RootReducerType) =>
@@ -30,6 +30,9 @@ export const SelectWarehouse = ({
 
   const handleChangeWarehouse = (e: string): void => {
     changeWarehouse(orderId, e, pointType);
+    if (isActive) {
+      fetchRout(orderId);
+    }
   };
 
   const warehouse = warehouses.map(({ id, state, street, city }) => (
@@ -44,7 +47,6 @@ export const SelectWarehouse = ({
       onChange={handleChangeWarehouse}
       style={{ width: 240 }}
       bordered={false}
-      disabled={isActive}
     >
       {warehouse}
     </Select>
