@@ -9,6 +9,8 @@ export {
   IS_ACTIVE_ROUT,
   setError,
   SET_ERROR,
+  isResizeMap,
+  IS_RESIZE_MAP,
 } from './appAction';
 
 export type {

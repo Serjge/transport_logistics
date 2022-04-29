@@ -7,4 +7,5 @@ export type {
   ChangeWarehouseType,
   IsActiveRoutType,
   SetErrorType,
+  IsResizeMapType,
 } from './AppActionsType';

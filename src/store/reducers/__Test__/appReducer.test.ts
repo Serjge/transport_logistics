@@ -24,6 +24,7 @@ beforeEach(() => {
     error: null,
     centerMap: { lng: 28.332645, lat: 57.819312 },
     zoom: 12,
+    isResize: false,
     warehouses: [
       {
         id: '1',

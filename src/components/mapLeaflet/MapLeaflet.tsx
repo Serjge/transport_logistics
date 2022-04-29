@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 
+import './Map.css';
 import { MapWrapper } from './style';
 
-import './Map.css';
-import { MotionTrack } from 'components';
-import { selectZoom, selectCenterMap, selectOrders } from 'store/selectors';
+import { MotionTrack, Map } from 'components';
+import { selectCenterMap, selectOrders, selectZoom } from 'store/selectors';
 
 export const MapLeaflet = (): ReactElement => {
   const zoom = useSelector(selectZoom);
@@ -24,11 +24,8 @@ export const MapLeaflet = (): ReactElement => {
   return (
     <MapWrapper>
       <MapContainer center={centerMap} zoom={zoom}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
         {motionTrack}
+        <Map />
       </MapContainer>
     </MapWrapper>
   );

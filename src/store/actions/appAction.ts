@@ -5,6 +5,7 @@ import { PointType } from 'type';
 export const SET_ERROR = 'APP/SET_ERROR';
 export const SET_ROUTES = 'APP/SET_ROUTES';
 export const FETCH_ROUT = 'APP/FETCH_ROUT';
+export const IS_RESIZE_MAP = 'APP/IS_RESIZE_MAP';
 export const IS_ACTIVE_ROUT = 'APP/IS_ACTIVE_ROUT';
 export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
 
@@ -45,6 +46,14 @@ export const setError = (error: string | null) =>
     type: SET_ERROR,
     payload: {
       error,
+    },
+  } as const);
+
+export const isResizeMap = (isResize: boolean) =>
+  ({
+    type: IS_RESIZE_MAP,
+    payload: {
+      isResize,
     },
   } as const);
 

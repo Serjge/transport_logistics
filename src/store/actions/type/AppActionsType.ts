@@ -4,17 +4,20 @@ import {
   setRoutes,
   fetchRout,
   setError,
+  isResizeMap,
 } from 'store/actions';
 
 export type AppActionsType =
-  | ChangeWarehouseType
   | SetRoutsType
+  | SetErrorType
   | FetchRoutType
+  | IsResizeMapType
   | IsActiveRoutType
-  | SetErrorType;
+  | ChangeWarehouseType;
 
-export type ChangeWarehouseType = ReturnType<typeof changeWarehouse>;
+export type SetErrorType = ReturnType<typeof setError>;
 export type SetRoutsType = ReturnType<typeof setRoutes>;
 export type FetchRoutType = ReturnType<typeof fetchRout>;
+export type IsResizeMapType = ReturnType<typeof isResizeMap>;
 export type IsActiveRoutType = ReturnType<typeof isActiveRout>;
-export type SetErrorType = ReturnType<typeof setError>;
+export type ChangeWarehouseType = ReturnType<typeof changeWarehouse>;

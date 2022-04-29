@@ -51,3 +51,5 @@ export const selectCenterMap = (state: RootReducerType): LatLngLiteral =>
   state.app.centerMap;
 
 export const selectZoom = (state: RootReducerType): number => state.app.zoom;
+
+export const selectIsResize = (state: RootReducerType): boolean => state.app.isResize;

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { SelectWarehouse } from 'components';
 import { PointType } from 'enum';
-import { useOrderRowSelection } from 'hook';
+import { useActions, useOrderRowSelection } from 'hook';
 import { selectOrders } from 'store/selectors';
 
 type DataType = {
@@ -33,6 +33,15 @@ export const OrderTable = (): ReactElement => {
   const orders = useSelector(selectOrders);
 
   const rowSelection = useOrderRowSelection();
+  const { isResizeMap } = useActions();
+
+  const resizeStart = (): void => {
+    isResizeMap(true);
+  };
+
+  const resizeStop = (): void => {
+    isResizeMap(false);
+  };
 
   const dataSource: DataType[] = orders.map(
     ({ id, loadingWarehouseId, unloadingWarehouseId }) => ({
@@ -57,10 +66,13 @@ export const OrderTable = (): ReactElement => {
 
   return (
     <Resizable
+      enable={{ right: true }}
       defaultSize={{
         width: '50%',
         height: '100%',
       }}
+      onResizeStart={resizeStart}
+      onResizeStop={resizeStop}
       maxWidth="100%"
       minWidth="50px"
     >

@@ -5,6 +5,7 @@ import {
   changeWarehouse,
   fetchRout,
   isActiveRout,
+  isResizeMap,
   setError,
   setRoutes,
 } from 'store/actions';
@@ -15,6 +16,7 @@ const allActions = {
   isActiveRout,
   setError,
   fetchRout,
+  isResizeMap,
 };
 
 export const useActions = (): typeof allActions => {

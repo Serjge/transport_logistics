@@ -12,4 +12,5 @@ export {
   selectWarehouse,
   selectOrder,
   selectZoom,
+  selectIsResize,
 } from './selectState';

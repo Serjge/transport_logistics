@@ -4,6 +4,7 @@ import {
   AppActionsType,
   CHANGE_WAREHOUSE,
   IS_ACTIVE_ROUT,
+  IS_RESIZE_MAP,
   SET_ERROR,
   SET_ROUTES,
 } from 'store/actions';
@@ -15,6 +16,7 @@ export type InitialAppStateType = {
   error: string | null;
   centerMap: LatLngLiteral;
   zoom: number;
+  isResize: boolean;
 };
 
 const initialState: InitialAppStateType = {
@@ -97,6 +99,7 @@ const initialState: InitialAppStateType = {
   error: null,
   centerMap: { lng: 28.332645, lat: 57.819312 },
   zoom: 12,
+  isResize: false,
 };
 
 export const appReducer = (
@@ -150,6 +153,12 @@ export const appReducer = (
       const { error } = action.payload;
 
       return { ...state, error };
+    }
+
+    case IS_RESIZE_MAP: {
+      const { isResize } = action.payload;
+
+      return { ...state, isResize };
     }
 
     default:
