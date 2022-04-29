@@ -4,7 +4,8 @@ export type RouteResponseType = {
   info: InfoType;
   route: RouteType;
 };
-type InfoType = {
+
+export type InfoType = {
   copyright: { imageAltText: string; imageUrl: string; text: string };
   messages: string[];
   statuscode: number;
@@ -46,7 +47,7 @@ type BoundingBoxType = {
   ul: LatLngLiteral;
 };
 
-type LocationType = {
+export type LocationType = {
   adminArea1: string; // country location
   adminArea1Type: string;
   adminArea3: string; // state location
