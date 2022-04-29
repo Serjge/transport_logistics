@@ -3,10 +3,12 @@ import { bindActionCreators } from 'redux';
 
 import {
   changeWarehouse,
+  fetchAddress,
   fetchRout,
   isActiveRout,
   isResizeMap,
   setError,
+  setMapMark,
   setRoutes,
 } from 'store/actions';
 
@@ -17,6 +19,8 @@ const allActions = {
   setError,
   fetchRout,
   isResizeMap,
+  setMapMark,
+  fetchAddress,
 };
 
 export const useActions = (): typeof allActions => {

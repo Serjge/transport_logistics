@@ -1,10 +1,13 @@
 import { LatLngLiteral } from 'leaflet';
 
+import { LocationAddressType } from 'api/type';
 import { PointType } from 'type';
 
 export const SET_ERROR = 'APP/SET_ERROR';
 export const SET_ROUTES = 'APP/SET_ROUTES';
 export const FETCH_ROUT = 'APP/FETCH_ROUT';
+export const SET_MAP_MARK = 'APP/SET_MAP_MARK';
+export const FETCH_ADDRESS = 'APP/FETCH_ADDRESS';
 export const IS_RESIZE_MAP = 'APP/IS_RESIZE_MAP';
 export const IS_ACTIVE_ROUT = 'APP/IS_ACTIVE_ROUT';
 export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
@@ -57,11 +60,27 @@ export const isResizeMap = (isResize: boolean) =>
     },
   } as const);
 
+export const setMapMark = (location: LocationAddressType) =>
+  ({
+    type: SET_MAP_MARK,
+    payload: {
+      location,
+    },
+  } as const);
+
 // saga
 export const fetchRout = (orderId: string) =>
   ({
     type: FETCH_ROUT,
     payload: {
       orderId,
+    },
+  } as const);
+
+export const fetchAddress = (location: LatLngLiteral) =>
+  ({
+    type: FETCH_ADDRESS,
+    payload: {
+      location,
     },
   } as const);

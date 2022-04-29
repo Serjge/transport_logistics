@@ -4,4 +4,4 @@ export type {
   InfoType,
   LocationType,
 } from './RouteResponseType';
-export type { AddressResponseType } from './AddressResponseType';
+export type { AddressResponseType, LocationAddressType } from './AddressResponseType';

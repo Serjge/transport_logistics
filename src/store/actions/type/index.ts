@@ -8,4 +8,6 @@ export type {
   IsActiveRoutType,
   SetErrorType,
   IsResizeMapType,
+  FetchAddressType,
+  SetMapMarkType,
 } from './AppActionsType';

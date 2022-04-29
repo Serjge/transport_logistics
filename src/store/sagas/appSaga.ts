@@ -12,24 +12,30 @@ import {
 } from 'redux-saga/effects';
 
 import { API } from 'api';
-import { RouteResponseType } from 'api/type';
+import { AddressResponseType, RouteResponseType } from 'api/type';
 import { ZERO_ELEMENT } from 'const';
 import { StatusCode } from 'enum';
 import {
+  FETCH_ADDRESS,
   FETCH_ROUT,
+  FetchAddressType,
   FetchRoutType,
   setError,
   SetErrorType,
+  setMapMark,
   setRoutes,
   SetRoutsType,
+  SetMapMarkType,
 } from 'store/actions';
 import { selectOrder, selectWarehouses } from 'store/selectors';
 import { OrderType, WarehouseType } from 'type';
 import { getPointWarehouse, getRoutes } from 'utils';
 
 const EMPTY_ARRAY = 0;
+const FIRST_ELEMENT = 0;
 
 type RouteType = AxiosResponse<RouteResponseType>;
+type AddressType = AxiosResponse<AddressResponseType>;
 type OrderWarehousesType = {
   loadingWarehouse: LatLngLiteral;
   unloadingWarehouse: LatLngLiteral;
@@ -82,8 +88,40 @@ function* getRoutsSaga(
   }
 }
 
+function* getAddressSaga(
+  action: FetchAddressType,
+): Generator<
+  PutEffect<SetErrorType | SetMapMarkType> | CallEffect<AddressType>,
+  void,
+  AddressType
+> {
+  const { location } = action.payload;
+
+  try {
+    const {
+      data: {
+        results,
+        info: { messages, statuscode },
+      },
+    } = yield call(API.getAddress, location);
+
+    if (statuscode === StatusCode.Success) {
+      yield put(setMapMark(results[FIRST_ELEMENT].locations[FIRST_ELEMENT]));
+    }
+
+    if (messages.length !== EMPTY_ARRAY) {
+      yield put(setError(messages[ZERO_ELEMENT]));
+    }
+  } catch (error) {
+    const { message } = error as AxiosError;
+
+    yield put(setError(message));
+  }
+}
+
 function* watchSaga(): Generator {
   yield takeEvery(FETCH_ROUT, getRoutsSaga);
+  yield takeEvery(FETCH_ADDRESS, getAddressSaga);
 }
 
 export function* rootSaga(): Generator {

@@ -11,6 +11,10 @@ export {
   SET_ERROR,
   isResizeMap,
   IS_RESIZE_MAP,
+  fetchAddress,
+  FETCH_ADDRESS,
+  SET_MAP_MARK,
+  setMapMark,
 } from './appAction';
 
 export type {
@@ -21,4 +25,7 @@ export type {
   SetRoutsType,
   ChangeWarehouseType,
   SetErrorType,
+  FetchAddressType,
+  IsResizeMapType,
+  SetMapMarkType,
 } from './type';

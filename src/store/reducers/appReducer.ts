@@ -1,11 +1,13 @@
 import { LatLngLiteral } from 'leaflet';
 
+import { LocationAddressType } from 'api/type';
 import {
   AppActionsType,
   CHANGE_WAREHOUSE,
   IS_ACTIVE_ROUT,
   IS_RESIZE_MAP,
   SET_ERROR,
+  SET_MAP_MARK,
   SET_ROUTES,
 } from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
@@ -17,6 +19,7 @@ export type InitialAppStateType = {
   centerMap: LatLngLiteral;
   zoom: number;
   isResize: boolean;
+  mapMark: LocationAddressType | null;
 };
 
 const initialState: InitialAppStateType = {
@@ -100,6 +103,7 @@ const initialState: InitialAppStateType = {
   centerMap: { lng: 28.332645, lat: 57.819312 },
   zoom: 12,
   isResize: false,
+  mapMark: null,
 };
 
 export const appReducer = (
@@ -159,6 +163,12 @@ export const appReducer = (
       const { isResize } = action.payload;
 
       return { ...state, isResize };
+    }
+
+    case SET_MAP_MARK: {
+      const { location } = action.payload;
+
+      return { ...state, mapMark: { ...location } };
     }
 
     default:

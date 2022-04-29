@@ -19,7 +19,7 @@ type ResultType = {
   providedLocation: ProvidedLocationType;
 };
 
-type LocationAddressType = LocationType & {
+export type LocationAddressType = LocationType & {
   adminArea6: string;
   adminArea6Type: string;
   mapUrl: string;
