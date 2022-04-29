@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import './Map.css';
 import { MapWrapper } from './style';
 
-import { MotionTrack, Map } from 'components';
+import { MotionTrack, Map, PutMark } from 'components';
 import { selectCenterMap, selectOrders, selectZoom } from 'store/selectors';
 
 export const MapLeaflet = (): ReactElement => {
@@ -26,6 +26,7 @@ export const MapLeaflet = (): ReactElement => {
       <MapContainer center={centerMap} zoom={zoom}>
         {motionTrack}
         <Map />
+        <PutMark />
       </MapContainer>
     </MapWrapper>
   );

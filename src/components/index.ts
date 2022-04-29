@@ -3,3 +3,4 @@ export { MapLeaflet, Map } from './mapLeaflet';
 export { SelectWarehouse } from './selectWarehouse';
 export { Mark } from './mark';
 export { MotionTrack } from './motionTrack';
+export { PutMark } from './putMark';
