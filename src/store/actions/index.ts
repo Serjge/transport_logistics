@@ -15,6 +15,8 @@ export {
   FETCH_ADDRESS,
   SET_MAP_MARK,
   setMapMark,
+  setNewWarehouses,
+  SET_NEW_WAREHOUSES,
 } from './appAction';
 
 export type {

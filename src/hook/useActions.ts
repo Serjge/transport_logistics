@@ -9,6 +9,7 @@ import {
   isResizeMap,
   setError,
   setMapMark,
+  setNewWarehouses,
   setRoutes,
 } from 'store/actions';
 
@@ -21,6 +22,7 @@ const allActions = {
   isResizeMap,
   setMapMark,
   fetchAddress,
+  setNewWarehouses,
 };
 
 export const useActions = (): typeof allActions => {

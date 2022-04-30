@@ -10,4 +10,5 @@ export type {
   IsResizeMapType,
   FetchAddressType,
   SetMapMarkType,
+  SetNewWarehousesType,
 } from './AppActionsType';

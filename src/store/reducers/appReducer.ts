@@ -8,6 +8,7 @@ import {
   IS_RESIZE_MAP,
   SET_ERROR,
   SET_MAP_MARK,
+  SET_NEW_WAREHOUSES,
   SET_ROUTES,
 } from 'store/actions';
 import { OrderType, WarehouseType } from 'type';
@@ -21,6 +22,8 @@ export type InitialAppStateType = {
   isResize: boolean;
   mapMark: LocationAddressType | null;
 };
+
+const CURRENT_ELEMENT = 1;
 
 const initialState: InitialAppStateType = {
   warehouses: [
@@ -169,6 +172,19 @@ export const appReducer = (
       const { location } = action.payload;
 
       return { ...state, mapMark: { ...location } };
+    }
+
+    case SET_NEW_WAREHOUSES: {
+      const { state: statePayload, point, city, street } = action.payload;
+      const id = String(state.warehouses.length + CURRENT_ELEMENT);
+
+      return {
+        ...state,
+        warehouses: [
+          ...state.warehouses,
+          { id, city, state: statePayload, street, point },
+        ],
+      };
     }
 
     default:
