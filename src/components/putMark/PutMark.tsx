@@ -1,32 +1,29 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 
-import { LatLngExpression } from 'leaflet';
 import { Marker, Popup, useMapEvent } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 
 import { useActions } from 'hook';
 import { selectMapMark } from 'store/selectors';
 
-export const PutMark = (): ReactElement => {
-  const [point, setPoint] = useState<LatLngExpression | null>(null);
+export const PutMark = (): ReactElement | null => {
   const { fetchAddress } = useActions();
 
   const mapMark = useSelector(selectMapMark);
 
   useMapEvent('click', e => {
-    setPoint(e.latlng);
     fetchAddress(e.latlng);
   });
 
+  if (mapMark === null) {
+    return null;
+  }
+
+  const { latLng, adminArea5, adminArea1, street } = mapMark;
+
   return (
-    <div>
-      {point && (
-        <Marker position={point}>
-          <Popup>
-            {`${mapMark?.street} ${mapMark?.adminArea5} ${mapMark?.adminArea1}`}.
-          </Popup>
-        </Marker>
-      )}
-    </div>
+    <Marker position={latLng}>
+      <Popup>{`${street} ${adminArea5} ${adminArea1}.`}</Popup>
+    </Marker>
   );
 };
