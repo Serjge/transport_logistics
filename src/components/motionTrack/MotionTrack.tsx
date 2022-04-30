@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import L from 'leaflet';
+import { Icon } from 'leaflet';
 import { Polyline } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ type MotionTrackPropsType = {
   orderId: string;
 };
 
-L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.7.0/dist/images/';
+Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.7.0/dist/images/';
 
 export const MotionTrack = ({ orderId }: MotionTrackPropsType): ReactElement => {
   const color = useSelector((state: RootReducerType) => selectColor(state, orderId));

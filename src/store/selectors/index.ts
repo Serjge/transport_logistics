@@ -1,5 +1,5 @@
 export {
-  selectState,
+  selectApp,
   selectWarehouses,
   selectOrders,
   selectRoutes,
@@ -13,4 +13,5 @@ export {
   selectOrder,
   selectZoom,
   selectIsResize,
-} from './selectState';
+  selectMapMark,
+} from 'store/selectors/selectApp';

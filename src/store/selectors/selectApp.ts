@@ -1,10 +1,11 @@
 import { LatLngLiteral } from 'leaflet';
 
+import { LocationAddressType } from 'api/type';
 import { ZERO_ELEMENT } from 'const';
 import { RootReducerType } from 'store';
 import { OrderType, WarehouseType } from 'type';
 
-export const selectState = (state: RootReducerType): RootReducerType => state;
+export const selectApp = (state: RootReducerType): RootReducerType => state;
 
 export const selectWarehouses = (state: RootReducerType): WarehouseType[] =>
   state.app.warehouses;
@@ -28,6 +29,7 @@ export const selectLoadingWarehouse = (
   orderId: string,
 ): WarehouseType => {
   const { loadingWarehouseId } = selectOrder(state, orderId);
+
   return selectWarehouse(state, loadingWarehouseId);
 };
 
@@ -36,6 +38,7 @@ export const selectUnloadingWarehouse = (
   orderId: string,
 ): WarehouseType => {
   const { unloadingWarehouseId } = selectOrder(state, orderId);
+
   return selectWarehouse(state, unloadingWarehouseId);
 };
 
@@ -53,3 +56,6 @@ export const selectCenterMap = (state: RootReducerType): LatLngLiteral =>
 export const selectZoom = (state: RootReducerType): number => state.app.zoom;
 
 export const selectIsResize = (state: RootReducerType): boolean => state.app.isResize;
+
+export const selectMapMark = (state: RootReducerType): LocationAddressType | null =>
+  state.app.mapMark;
