@@ -10,6 +10,7 @@ export const SET_MAP_MARK = 'APP/SET_MAP_MARK';
 export const FETCH_ADDRESS = 'APP/FETCH_ADDRESS';
 export const IS_RESIZE_MAP = 'APP/IS_RESIZE_MAP';
 export const IS_ACTIVE_ROUT = 'APP/IS_ACTIVE_ROUT';
+export const REMOVE_MAP_MARK = 'APP/REMOVE_MAP_MARK';
 export const CHANGE_WAREHOUSE = 'APP/CHANGE_WAREHOUSE';
 export const SET_NEW_WAREHOUSES = 'APP/SET_NEW_WAREHOUSES';
 
@@ -83,6 +84,11 @@ export const setNewWarehouses = (
       state,
       point,
     },
+  } as const);
+
+export const removeMapMark = () =>
+  ({
+    type: REMOVE_MAP_MARK,
   } as const);
 
 // saga

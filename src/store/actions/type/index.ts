@@ -11,4 +11,5 @@ export type {
   FetchAddressType,
   SetMapMarkType,
   SetNewWarehousesType,
+  RemoveMapMarkType,
 } from './AppActionsType';

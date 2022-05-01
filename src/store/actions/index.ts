@@ -17,6 +17,8 @@ export {
   setMapMark,
   setNewWarehouses,
   SET_NEW_WAREHOUSES,
+  removeMapMark,
+  REMOVE_MAP_MARK,
 } from './appAction';
 
 export type {
@@ -30,4 +32,6 @@ export type {
   FetchAddressType,
   IsResizeMapType,
   SetMapMarkType,
+  RemoveMapMarkType,
+  SetNewWarehousesType,
 } from './type';

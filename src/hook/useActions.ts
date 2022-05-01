@@ -7,6 +7,7 @@ import {
   fetchRout,
   isActiveRout,
   isResizeMap,
+  removeMapMark,
   setError,
   setMapMark,
   setNewWarehouses,
@@ -23,6 +24,7 @@ const allActions = {
   setMapMark,
   fetchAddress,
   setNewWarehouses,
+  removeMapMark,
 };
 
 export const useActions = (): typeof allActions => {

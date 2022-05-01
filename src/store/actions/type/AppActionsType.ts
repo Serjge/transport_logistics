@@ -7,6 +7,7 @@ import {
   isResizeMap,
   fetchAddress,
   setMapMark,
+  removeMapMark,
 } from 'store/actions';
 import { setNewWarehouses } from 'store/actions/appAction';
 
@@ -18,6 +19,7 @@ export type AppActionsType =
   | IsResizeMapType
   | FetchAddressType
   | IsActiveRoutType
+  | RemoveMapMarkType
   | ChangeWarehouseType
   | SetNewWarehousesType;
 
@@ -28,5 +30,6 @@ export type SetMapMarkType = ReturnType<typeof setMapMark>;
 export type IsResizeMapType = ReturnType<typeof isResizeMap>;
 export type FetchAddressType = ReturnType<typeof fetchAddress>;
 export type IsActiveRoutType = ReturnType<typeof isActiveRout>;
+export type RemoveMapMarkType = ReturnType<typeof removeMapMark>;
 export type ChangeWarehouseType = ReturnType<typeof changeWarehouse>;
 export type SetNewWarehousesType = ReturnType<typeof setNewWarehouses>;

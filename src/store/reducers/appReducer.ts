@@ -6,6 +6,7 @@ import {
   CHANGE_WAREHOUSE,
   IS_ACTIVE_ROUT,
   IS_RESIZE_MAP,
+  REMOVE_MAP_MARK,
   SET_ERROR,
   SET_MAP_MARK,
   SET_NEW_WAREHOUSES,
@@ -184,6 +185,12 @@ export const appReducer = (
           ...state.warehouses,
           { id, city, state: statePayload, street, point },
         ],
+      };
+    }
+    case REMOVE_MAP_MARK: {
+      return {
+        ...state,
+        mapMark: null,
       };
     }
 
